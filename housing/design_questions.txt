@@ -1,0 +1,78 @@
+=== Design and Implementation Plan Questions ===
+
+Below are a few questions about how you will design your program and your
+implementation plan. It is crucial to have a reasonable design and
+implementation plan before you start your program. Without this, success is
+unlikely. The following questions will help guide you in your thinking and
+raise some important questions and issues. There is no single "right" answer
+to each of the questions but there are some "wrong" answers. Some designs and
+plans are better than others. The point here is for you to think about what
+you're going to do.
+
+Make a copy of this file and edit it, adding your answers then turn this
+document in.
+
+----------------------------------------------------------------------
+
+1) The instructions.txt document lists a minimum set of classes that you need
+to have in your program: family, familymgr, hashtable. How will each of these
+classes relate to each other. For example, will some of these classes contain
+other classes as data members? Will some of these classes call methods on the
+other classes?
+
+  familymgr -- hashtable: 
+
+The familymgr class will access the hashtable function in a few ways.  It will
+add families to the hash table and look up families and friends of the families.
+
+The familymgr class will most likely call methods from the hashtable class in order
+to accomplish this.   
+
+  familymgr -- family: 
+  
+The family class will be what I call my 'data class'.  It will hold the actual
+data pertaining to each family, including the id, family name, number of members,
+and a list of their friends.  The familymgr class will have access to the family class
+in that it will be calling its setters and getters for each individual object.  Familymgr
+will also take this data and pass it to the hashtable.
+
+  family -- hashtable: 
+The hashtable class will hold the family data.  The hashtable will be made up of an
+array of pointers to linked lists of family objects.  
+
+
+2) What will be the data type for the array elements in your hashtable? I am
+asking for an actual data type, not just a description of the kind of data
+that will be in your array.
+
+Since it will be a seperate chained hash table, the array will hold pointers
+to each linked chain.  So the actual data type in the array will most likely be
+of type node, or whatever I decide to name it when I write the code.
+
+3) Your familymgr class should be written in such a way that you could replace
+the hashtable with a linked list (if you had a linked list that held family
+data) very easily. How are you going to design your program so that this
+change could be made quickly?
+
+With a seperate chained hashtable, the change could be made easily.  You could simply
+link each chain together by taking the last element of each chain and linking it to the head
+of the next, making one long linked list instead of multiple shorter ones.
+
+I would just traverse each chain of the list until I found one that was pointed to nullptr, 
+and point that to the next item in the array.
+
+4) What is your testing strategy? Has your testing strategy changed since the
+first programming assignment (martian_weather) and if so, how?
+
+My testing strategy is to write small chunks and test them.  I want to get everything
+working before moving on to the next section.  I think this is the best way to
+prevent errors and memory leaks.
+
+This strategy has changed since the first assignment, but not since the second.  The first
+assignment, I would test small parts to make sure they worked, but I was not running it through
+valgrind.  I ended up with a lot of memory leaks in the first test, and I am going to make
+sure that it doesn't happen with this one.
+
+
+
+
